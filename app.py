@@ -316,7 +316,7 @@ def extract_fields(text, filename=""):
     invoice_no = choose_invoice(get_invoice_candidates(t))
     data = {
         "Tipo documento": doc_type, "Factura": invoice_no, "Fecha factura": extract_date(t, invoice_no),
-        "Proveedor": extract_provider_name(t, doc_type), "Dirección proveedor": extract_provider_address(t, doc_type), "Tax ID": extract_tax_id(t, doc_type),
+        "Proveedor": extract_provider_name(t, doc_type), "Dirección proveedor": extract_provider_address(t, doc_type), "Tax ID": extract_tax_id(t),
         "Incoterm": extract_incoterm(t), "Moneda": extract_currency(t), "Total factura": extract_total_invoice(t, doc_type, invoice_no),
         "Descripción partidas": extract_descriptions(text), "BL": extract_bl(t), "Bultos": extract_bultos(t, doc_type),
         "Peso bruto kg": extract_gross_weight(t, doc_type), "Contenedores": extract_containers(t), "Cantidad total": extract_quantity_total(t, doc_type),
