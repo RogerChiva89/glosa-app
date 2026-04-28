@@ -42,8 +42,10 @@ def extract_pedimento_supplier_block(text: str) -> dict:
     after = parts[1].strip() if len(parts) > 1 else ""
 
     tax_match = re.search(r"\b([A-Z0-9]{10,25})\b", after)
-    if tax_match:
-        result["Tax ID"] = tax_match.group(1)
+   if tax_match:
+    tax_id = tax_match.group(1)
+    tax_id = re.sub(r"\bNO\b$", "", tax_id).strip()
+    result["Tax ID"] = tax_id
 
     before = re.sub(r"^[A-Z0-9]{8,25}\s+", "", before).strip()
 
