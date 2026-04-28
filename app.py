@@ -119,8 +119,13 @@ def read_pdf_pdfplumber(uploaded_file):
 def read_pdf(uploaded_file):
     a = read_pdf_pypdf(uploaded_file)
     b = read_pdf_pdfplumber(uploaded_file)
-    return b if len(b) > len(a) else a
+    text = b if len(b) > len(a) else a
 
+    # Quitar marcadores internos de página para que no se mezclen con proveedor
+    text = re.sub(r"---\s*PAGINA\s*\d+\s*---", " ", text, flags=re.IGNORECASE)
+    text = re.sub(r"\s+", " ", text)
+
+    return text
 
 def classify_doc(text: str, filename: str = "") -> str:
     t = normalize(text + " " + filename)
