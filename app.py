@@ -81,6 +81,7 @@ def extract_pedimento_supplier_block(text: str) -> dict:
 
     if tax_match:
         direccion = direccion[tax_match.end():].strip()
+direccion = re.sub(r"^\bNO\b\s*", "", direccion).strip()
 
     if not direccion:
         direccion = direccion_pre
